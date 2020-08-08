@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:checked="true"
+        android:id="@+id/toggle_user_name"
+        android:icon="@drawable/ic_account"
+         />
+
+    <item
+
+        android:id="@+id/toggle_user_details"
+        android:icon="@drawable/ic_user_details" />
+
+    <item
+
+        android:id="@+id/toggle_user_address"
+        android:icon="@drawable/ic_location" />
+
+    <item
+
+        android:id="@+id/toggle_user_contact"
+        android:icon="@drawable/ic_call" />
+
+    <item
+
+        android:id="@+id/toggle_user_password"
+        android:icon="@drawable/ic_password" />
+</menu>

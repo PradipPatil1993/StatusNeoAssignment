@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">StatusNeoApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_favourite">Favourite</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="user_name_hint">My user name is</string>
+    <string name="user_address_hint">My address is</string>
+    <string name="user_phone_hint">My phone is </string>
+    <string name="user_password_hint">My connect password is</string>
+    <string name="user_details_hint">My name is</string>
+
+    <string name="network_error">Network error, Something went wrong!</string>
+
+</resources>
