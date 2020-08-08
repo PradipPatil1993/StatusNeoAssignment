@@ -45,10 +45,13 @@ class HomeFragment : Fragment(), SwipeDeck.SwipeEventCallback {
 
 
         homeViewModel.getUserData().observe(viewLifecycleOwner, Observer {
-            userDataList.add(it)
-            val adapter = context?.let { it -> UserAdapter(userDataList, it) }
-            cardStack.setAdapter(adapter)
-
+            if(it ==null){
+                AppUtility.showSnackBar(root, getString(R.string.network_error))
+            }else{
+                userDataList.add(it)
+                val adapter = context?.let { it -> UserAdapter(userDataList, it) }
+                cardStack.setAdapter(adapter)
+            }
         })
         return root
     }
@@ -62,12 +65,15 @@ class HomeFragment : Fragment(), SwipeDeck.SwipeEventCallback {
     }
 
     override fun cardSwipedLeft(position: Int) {
-        if(AppUtility.isNetworkAvailable(requireContext())){
-            userDataList.remove(userDataList[position])
-            homeViewModel.loadUserData()
-        }else{
-            AppUtility.showSnackBar(requireView(), getString(R.string.network_error))
+        if(position< userDataList.size){
+            if(AppUtility.isNetworkAvailable(requireContext())){
+                userDataList.remove(userDataList[position])
+                homeViewModel.loadUserData()
+            }else{
+                AppUtility.showSnackBar(requireView(), getString(R.string.network_error))
+            }
         }
+
     }
 
     override fun cardActionUp() {
@@ -81,13 +87,17 @@ class HomeFragment : Fragment(), SwipeDeck.SwipeEventCallback {
     }
 
     override fun cardSwipedRight(position: Int) {
-        if(AppUtility.isNetworkAvailable(requireContext())){
-            homeViewModel.insertUser(requireContext(),userDataList[position])
-            userDataList.remove(userDataList[position])
-            homeViewModel.loadUserData()
-        }else{
-            AppUtility.showSnackBar(requireView(), getString(R.string.network_error))
+
+        if(position< userDataList.size){
+            if(AppUtility.isNetworkAvailable(requireContext())){
+                homeViewModel.insertUser(requireContext(),userDataList[position])
+                userDataList.remove(userDataList[position])
+                homeViewModel.loadUserData()
+            }else{
+                AppUtility.showSnackBar(requireView(), getString(R.string.network_error))
+            }
         }
+
 
     }
 }
